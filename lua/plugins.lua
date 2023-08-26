@@ -27,4 +27,14 @@ return require('packer').startup(function()
     -- treesitter 语法高亮
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+        require('Comment').setup()
+    end}
+
+    -- lspconfig
+    use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
+
+
 end)

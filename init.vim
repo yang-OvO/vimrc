@@ -7,6 +7,8 @@ lua require('plugin-config/nvim-tree')
 lua require('plugin-config/bufferline')
 lua require('plugin-config/toggleterm')
 lua require('plugin-config/nvim-treesitter')
+lua require('Comment').setup()
+" lua require('lsp/setup')
 
 set background=dark
 colorscheme gruvbox
