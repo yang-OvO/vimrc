@@ -8,6 +8,7 @@ lua require('plugin-config/bufferline')
 lua require('plugin-config/toggleterm')
 lua require('plugin-config/nvim-treesitter')
 lua require('Comment').setup()
+lua require('plugin-config/lualine')
 " lua require('lsp/setup')
 
 set background=dark

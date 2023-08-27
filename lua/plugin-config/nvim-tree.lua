@@ -12,4 +12,7 @@ require'nvim-tree'.setup {
         --color = "#3f0af0",
         preserve_window_proportions = false,
     },
+    git = {
+        enable = false,
+    },
 }
