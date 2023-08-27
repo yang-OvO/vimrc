@@ -41,5 +41,4 @@ map("n", "<C-h>", ":BufferLineCyclePrev<CR>", {silent=true})
 map("n", "<C-l>", ":BufferLineCycleNext<CR>", {silent=true})
 
 -- 关闭其他buffer
-map("n", "d<C-h>", "<cmd>BufferLineCloseLeft<CR>", { silent = true })
-map("n", "d<C-l>", "<cmd>BufferLineCloseRight<CR>", { silent = true })
+map("n", "<F3>", "<cmd>BufferLineCloseOthers<CR>", { silent = true })
