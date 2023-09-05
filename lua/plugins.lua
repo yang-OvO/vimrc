@@ -56,4 +56,13 @@ return require('packer').startup(function()
         'glepnir/dashboard-nvim',
         requires = {'nvim-tree/nvim-web-devicons'}
     }
+
+    -- rainbow parentheses
+    use("p00f/nvim-ts-rainbow")
+
+    -- blankine
+    use("lukas-reineke/indent-blankline.nvim")
+
+    -- autopairs
+    use("windwp/nvim-autopairs")
 end)

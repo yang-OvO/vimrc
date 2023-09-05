@@ -14,6 +14,9 @@ lua require('plugin-config/gruvbox')
 lua require('plugin-config/telescope')
 lua require('plugin-config/projects')
 lua require('plugin-config/dashboard')
+lua require('plugin-config/indent-blankline')
+lua require('nvim-autopairs').setup({check_ts = true})
+
 
 set background=dark
 colorscheme gruvbox
