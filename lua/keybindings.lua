@@ -24,7 +24,7 @@ map('v', '>', '>gv', {silent=true})
 -- kj回到normal模式
 map("i", "kj", "<Esc>", {silent=true})
 
--- ctrl+s保存
+-- F4保存
 map({'v', 'n', 'i', 't'}, '<F4>', '<cmd>wa<CR>')
 
 -- nvimTree
@@ -42,3 +42,31 @@ map("n", "<C-l>", ":BufferLineCycleNext<CR>", {silent=true})
 
 -- 关闭其他buffer
 map("n", "<F3>", "<cmd>BufferLineCloseOthers<CR>", { silent = true })
+
+-- Telescope
+map("n", "<C-p>", ":Telescope find_files<CR>", { silent = true })
+map("n", "<C-f>", ":Telescope live_grep<CR>", { silent = true })
+
+local pluginKeys = {}
+-- Telescope 列表中 插入模式快捷键
+pluginKeys.telescopeList = {
+  i = {
+    -- 上下移动
+    ["<C-j>"] = "move_selection_next",
+    ["<C-k>"] = "move_selection_previous",
+    ["<C-n>"] = "move_selection_next",
+    ["<C-p>"] = "move_selection_previous",
+    -- 历史记录
+    ["<Down>"] = "cycle_history_next",
+    ["<Up>"] = "cycle_history_prev",
+    -- 关闭窗口
+    ["<esc>"] = "close",
+    -- ["<C-c>"] = "close",
+    -- 预览窗口上下滚动
+    ["<C-u>"] = "preview_scrolling_up",
+    ["<C-d>"] = "preview_scrolling_down",
+  },
+}
+
+
+return pluginKeys

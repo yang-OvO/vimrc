@@ -1,3 +1,4 @@
+" 基本配置
 lua require('basic')
 lua require('plugins')
 lua require('keybindings')
@@ -10,7 +11,9 @@ lua require('plugin-config/nvim-treesitter')
 lua require('Comment').setup()
 lua require('plugin-config/lualine')
 lua require('plugin-config/gruvbox')
-" lua require('lsp/setup')
+lua require('plugin-config/telescope')
+lua require('plugin-config/projects')
+lua require('plugin-config/dashboard')
 
 set background=dark
 colorscheme gruvbox

@@ -33,12 +33,27 @@ return require('packer').startup(function()
         require('Comment').setup()
     end}
 
-    -- lspconfig
-    use {'neovim/nvim-lspconfig', 'williamboman/nvim-lsp-installer'}
-
     -- lualine status bar
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+    use("arkav/lualine-lsp-progress")
+
+    -- telescope
+    use({
+      "nvim-telescope/telescope.nvim",
+      requires = { "nvim-lua/plenary.nvim" },
+    })
+    -- telescope extensions
+    use("LinArcX/telescope-env.nvim")
+    use("nvim-telescope/telescope-ui-select.nvim")
+    -- projects
+    use("ahmedkhalf/project.nvim")
+
+    -- dashboard-nvim
+    use {
+        'glepnir/dashboard-nvim',
+        requires = {'nvim-tree/nvim-web-devicons'}
     }
 end)
