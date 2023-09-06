@@ -2,6 +2,7 @@
 lua require('basic')
 lua require('plugins')
 lua require('keybindings')
+lua require('autocmds')
 
 " 插件配置
 lua require('plugin-config/nvim-tree')
@@ -16,6 +17,7 @@ lua require('plugin-config/projects')
 lua require('plugin-config/dashboard')
 lua require('plugin-config/indent-blankline')
 lua require('nvim-autopairs').setup({check_ts = true})
+lua require('nvim-surround').setup()
 
 
 set background=dark
