@@ -61,3 +61,8 @@ vim.o.wildmenu = true
 -- 不可见字符的显示
 vim.o.list = true
 vim.o.listchars = "tab:▸ ,trail:⋅,extends:❯,precedes:❮"
+
+-- 禁止创建备份文件
+vim.o.backup = false
+vim.o.writebackup = false
+vim.o.swapfile = false

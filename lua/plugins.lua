@@ -1,74 +1,30 @@
-return require('packer').startup(function()
-    -- packer
-    use 'wbthomason/packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
-    -- theme and color
-    use {
-        'ellisonleao/gruvbox.nvim',
-        requires = {'rktjmp/lush.nvim'}
-    }
-    use 'glepnir/zephyr-nvim'
-    use 'shaunsingh/nord.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-    -- nvim-tree 目录树
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons'
-    }
+-- Use a protected call so we don't error out on first use
+local status_ok, lazy = pcall(require, "lazy")
+if not status_ok then
+    vim.notify("没有找到lazy插件管理器")
+    return
+end
 
-    -- bufferline tab栏
-    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
-
-    -- toggleterm 终端
-    use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-        require("toggleterm").setup()
-    end}
-
-    -- treesitter 语法高亮
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
-    use {
-        'numToStr/Comment.nvim',
-        config = function()
-        require('Comment').setup()
-    end}
-
-    -- lualine status bar
-    use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-    }
-    use("arkav/lualine-lsp-progress")
-
-    -- telescope
-    use({
-      "nvim-telescope/telescope.nvim",
-      requires = { "nvim-lua/plenary.nvim" },
-    })
-    -- telescope extensions
-    use("LinArcX/telescope-env.nvim")
-    use("nvim-telescope/telescope-ui-select.nvim")
-    -- projects
-    use("ahmedkhalf/project.nvim")
-
-    -- dashboard-nvim
-    use {
-        'glepnir/dashboard-nvim',
-        requires = {'nvim-tree/nvim-web-devicons'}
-    }
-
-    -- rainbow parentheses
-    use("p00f/nvim-ts-rainbow")
-
-    -- blankine
-    use("lukas-reineke/indent-blankline.nvim")
-
-    -- autopairs
-    use("windwp/nvim-autopairs")
-
-    use ({
-        "kylechui/nvim-surround",
-        tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-    })
-
-end)
+-- Install Plugins
+return lazy.setup("plugin-config",
+  -- opt
+  {
+      git = {
+        url_format = "git@github.com:%s.git"
+      }
+  }
+)
