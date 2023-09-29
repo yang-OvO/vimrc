@@ -10,6 +10,4 @@ return {
     "LinArcX/telescope-env.nvim",
     "nvim-telescope/telescope-ui-select.nvim",
 
-    -- nvim-treesitter helper 彩虹扩号
-    "p00f/nvim-ts-rainbow"
 }
