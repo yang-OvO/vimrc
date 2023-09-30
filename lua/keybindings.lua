@@ -46,6 +46,10 @@ map("n", "<F3>", "<cmd>BufferLineCloseOthers<CR>", { silent = true })
 -- Telescope
 map("n", "<C-p>", ":Telescope find_files<CR>", { silent = true })
 map("n", "<C-f>", ":Telescope live_grep<CR>", { silent = true })
+-- 查找最近打开过的文件
+map("n", "<C-[>", "<cmd>Telescope oldfiles initial_mode=insert<CR>")
+-- 最近使用的命令
+map("n", "<leader>:", "<cmd>Telescope command_history initial_mode=insert<CR>")
 
 local pluginKeys = {}
 -- Telescope 列表中 插入模式快捷键
@@ -68,6 +72,7 @@ pluginKeys.telescopeList = {
     },
 }
 
+------------------------------ LSP -----------------------------------------
 pluginKeys.cmp = function(cmp)
     return {
         -- 上一个
@@ -94,6 +99,58 @@ pluginKeys.cmp = function(cmp)
     }
 end
 
+-- 打开工程的诊断
+map("n", "gla", "<cmd>Telescope diagnostics<CR>")
+-- 查找所有引用
+map("n", "gr", "<cmd>Telescope lsp_references<CR>")
 
+-- 打开当前一行的诊断
+vim.keymap.set('n', 'ge', vim.diagnostic.open_float)
+-- 跳转到下一个诊断
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+-- 跳转到上一个诊断
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+-- 打开当前文件的诊断
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+        -- Buffer local mappings.
+        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        local opts = { buffer = ev.buf }
+        -- 跳转到声明
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        -- 跳转到定义
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts) -- telescope is better
+
+        -- 悬停事件
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+
+        -- useless
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+
+        -- 查找类型的定义
+        vim.keymap.set('n', 'gsd', vim.lsp.buf.type_definition, opts)
+        vim.keymap.set('n', 'gR', vim.lsp.buf.rename, opts)
+        vim.keymap.set({ 'n', 'v' }, 'gca', vim.lsp.buf.code_action, opts)
+        -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts) -- telescope do better
+        vim.keymap.set('n', 'gq', function()
+            vim.lsp.buf.format { async = true }
+        end, opts)
+    end,
+})
+
+
+------------------------------ GIT -----------------------------------------
+-- 查找 git 仓库中的文件
+map("n", "<leader>f", "<cmd>Telescope git_files initial_mode=insert<CR>")
+-- 查找 git 仓库的 commit 历史
+map("n", "<leader>c", "<cmd>Telescope git_commits<CR>")
+-- 查找 git 仓库的所有分支
+map("n", "<leader>b", "<cmd>Telescope git_branches<CR>")
 
 return pluginKeys

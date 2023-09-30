@@ -66,3 +66,5 @@ vim.o.listchars = "tab:▸ ,trail:⋅,extends:❯,precedes:❮"
 vim.o.backup = false
 vim.o.writebackup = false
 vim.o.swapfile = false
+
+vim.g.mapleader = ' '
