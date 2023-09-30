@@ -20,11 +20,4 @@ if not status_ok then
 end
 
 -- Install Plugins
-return lazy.setup("plugin-config",
-  -- opt
-  {
-      git = {
-        url_format = "git@github.com:%s.git"
-      }
-  }
-)
+return lazy.setup("plugin-config")
