@@ -1,5 +1,5 @@
 local myAutoGroup = vim.api.nvim_create_augroup("myAutoGroup", {
-  clear = true,
+    clear = true,
 })
 
 local autocmd = vim.api.nvim_create_autocmd
@@ -17,27 +17,28 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- 进入Terminal 自动进入插入模式
 autocmd("TermOpen", {
-  group = myAutoGroup,
-  command = "startinsert",
+    group = myAutoGroup,
+    command = "startinsert",
 })
 
 
 -- Highlight on yank
 autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = myAutoGroup,
-  pattern = "*",
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = myAutoGroup,
+    pattern = "*",
 })
 
 -- 用o换行不要延续注释
 autocmd("BufEnter", {
-  group = myAutoGroup,
-  pattern = "*",
-  callback = function()
-    vim.opt.formatoptions = vim.opt.formatoptions
-      - "o" -- O and o, don't continue comments
-      + "r" -- But do continue when pressing enter.
-  end,
+    group = myAutoGroup,
+    pattern = "*",
+    callback = function()
+        vim.opt.formatoptions = vim.opt.formatoptions
+            - "o" -- O and o, don't continue comments
+            + "r" -- But do continue when pressing enter.
+    end,
 })
+
