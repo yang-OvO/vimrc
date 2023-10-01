@@ -47,9 +47,12 @@ map("n", "<F3>", "<cmd>BufferLineCloseOthers<CR>", { silent = true })
 map("n", "<C-p>", ":Telescope find_files<CR>", { silent = true })
 map("n", "<C-f>", ":Telescope live_grep<CR>", { silent = true })
 -- 查找最近打开过的文件
-map("n", "<C-[>", "<cmd>Telescope oldfiles initial_mode=insert<CR>")
+map("n", "<leader>o", "<cmd>Telescope oldfiles initial_mode=insert<CR>")
 -- 最近使用的命令
 map("n", "<leader>:", "<cmd>Telescope command_history initial_mode=insert<CR>")
+-- 绑定的快捷键
+map("n", "<leader>?", "<cmd>lua require('telescope.builtin').keymaps()<CR>")
+
 
 local pluginKeys = {}
 -- Telescope 列表中 插入模式快捷键
@@ -111,7 +114,7 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 -- 跳转到上一个诊断
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 -- 打开当前文件的诊断
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', 'gl', vim.diagnostic.setloclist)
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
