@@ -1,8 +1,8 @@
 return {
-    "williamboman/mason-lspconfig.nvim",
-    lazy = false,
-    -- after mason setup 
-    priority = 49,
+    "neovim/nvim-lspconfig",
+    dependencies = {
+	    "williamboman/mason-lspconfig.nvim",
+    },
     config = function()
         require("mason-lspconfig").setup {
             ensure_installed = { "clangd", "lua_ls", "rust_analyzer", "cmake", "pyright", "bashls" },
