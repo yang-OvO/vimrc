@@ -155,5 +155,7 @@ map("n", "<leader>f", "<cmd>Telescope git_files initial_mode=insert<CR>")
 map("n", "<leader>c", "<cmd>Telescope git_commits<CR>")
 -- 查找 git 仓库的所有分支
 map("n", "<leader>b", "<cmd>Telescope git_branches<CR>")
+-- git仓库当前状态
+map("n", "<ledaer>s", "<cmd>Telescope git_status<CR>")
 
 return pluginKeys
