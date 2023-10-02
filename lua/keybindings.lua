@@ -105,7 +105,7 @@ end
 -- 打开工程的诊断
 map("n", "gla", "<cmd>Telescope diagnostics<CR>")
 -- 查找所有引用
-map("n", "gr", "<cmd>Telescope lsp_references<CR>")
+map("n", "gra", "<cmd>Telescope lsp_references<CR>")
 
 -- 打开当前一行的诊断
 vim.keymap.set('n', 'ge', vim.diagnostic.open_float)
@@ -132,15 +132,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- 悬停事件
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 
-        -- useless
         vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('i', '<C-k>', vim.lsp.buf.signature_help, opts)
 
         -- 查找类型的定义
         vim.keymap.set('n', 'gsd', vim.lsp.buf.type_definition, opts)
         vim.keymap.set('n', 'gR', vim.lsp.buf.rename, opts)
         vim.keymap.set({ 'n', 'v' }, 'gca', vim.lsp.buf.code_action, opts)
-        -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts) -- telescope do better
+        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
         vim.keymap.set('n', 'gq', function()
             vim.lsp.buf.format { async = true }
         end, opts)
